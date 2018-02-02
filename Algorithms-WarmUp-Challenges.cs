@@ -1,58 +1,145 @@
 
 
-
 // C# Solutions for HackerRank.com  - Algorithms Track - Warmup Challenges     
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
-class Solution {
+// ***********Simple Array Sum************
 
-    //***********Simple Array Sum************
-    // Sums an array of a given length.
+// https://www.hackerrank.com/challenges/simple-array-sum/problem
+// Sums an array of a given length.
 
-	static void Main(String[] args) {
-        int n = Convert.ToInt32(Console.ReadLine());
-        string[] arr_temp = Console.ReadLine().Split(' ');
-        int[] arr = Array.ConvertAll(arr_temp,Int32.Parse);
-		
-        int i = 0;
-        int sum = 0;
-        while (i < n){
-            sum += arr[i];
-            i += 1;
-        }
-        Console.WriteLine(sum.ToString());
-        
-    }
+// HR starter code
+static void Main(String[] args) {
+	int n = Convert.ToInt32(Console.ReadLine());
+	string[] ar_temp = Console.ReadLine().Split(' ');
+	int[] ar = Array.ConvertAll(ar_temp,Int32.Parse);
+	int result = simpleArraySum(n, ar);
+	Console.WriteLine(result);
+}
 
-	//************Compare the Triplets************
-    //Compares values within two arrays.
+// Sample input to run in Visual Studio: 
+
+// int n = 6;
+// int[] ar = new int[]{1, 2, 3, 4, 10, 11};
+
+// int result = simpleArraySum(n, ar);
+// ResultLabel.Text = result.ToString();
+
+// Sample output:
+// 31
+
+static int simpleArraySum(int n, int[] ar) {
 	
-	static void Main(String[] args) {
-        string[] tokens_a0 = Console.ReadLine().Split(' ');
-        int a0 = Convert.ToInt32(tokens_a0[0]);
-        int a1 = Convert.ToInt32(tokens_a0[1]);
-        int a2 = Convert.ToInt32(tokens_a0[2]);
-        string[] tokens_b0 = Console.ReadLine().Split(' ');
-        int b0 = Convert.ToInt32(tokens_b0[0]);
-        int b1 = Convert.ToInt32(tokens_b0[1]);
-        int b2 = Convert.ToInt32(tokens_b0[2]);
+	int result = 0;
+	for(int i = 0; i < ar.Length; i++){
 		
-		int a = 0;
-        int b = 0;
-        for(int i=0; i<3; i++){
-            if(int.Parse(tokens_a0[i]) > int.Parse(tokens_b0[i])){
-                a += 1;              
-            }
-            else if(int.Parse(tokens_b0[i]) > int.Parse(tokens_a0[i])){
-                b += 1;    
-            }
-        }
-        Console.WriteLine(a.ToString() + ' ' + b.ToString());
-    }
+		result += ar[i];
+	}
+	
+	// or...
+	// using System.Linq;
+	//int result = ar.Sum();
+	return result;
+}
+
+
+
+
+
+
+
+
+
+
+	
+
+// ************Compare the Triplets************
+
+// https://www.hackerrank.com/challenges/compare-the-triplets/problem
+// Compares values within two arrays.
+	
+// HR starter code
+static void Main(String[] args) {
+	string[] tokens_a0 = Console.ReadLine().Split(' ');
+	int a0 = Convert.ToInt32(tokens_a0[0]);
+	int a1 = Convert.ToInt32(tokens_a0[1]);
+	int a2 = Convert.ToInt32(tokens_a0[2]);
+	string[] tokens_b0 = Console.ReadLine().Split(' ');
+	int b0 = Convert.ToInt32(tokens_b0[0]);
+	int b1 = Convert.ToInt32(tokens_b0[1]);
+	int b2 = Convert.ToInt32(tokens_b0[2]);
+	int[] result = solve(a0, a1, a2, b0, b1, b2);
+	Console.WriteLine(String.Join(" ", result));
+}	
+	
+// Sample input to run in Visual Studio:
+ 
+// int a0 = 5;
+// int a1 = 6;
+// int a2 = 7;
+// int b0 = 3;
+// int b1 = 6;
+// int b2 = 10;
+
+// int[] result = solve(a0, a1, a2, b0, b1, b2);
+// ResultLabel.Text = result.ToString();               <-----------
+
+// Sample output:
+// 1 1
+
+
+	
+static int[] solve(int a0, int a1, int a2, int b0, int b1, int b2){
+
+	int[] result = new int[2]; 
+	int a = 0;
+	int b = 0;
+	
+	for(int i = 0; i < 3; i++){
+		
+		if(tokens_a0[i] > tokens_b0[i]){
+			a += 1;              
+		}
+		else if(tokens_b0[i] > tokens_a0[i]){
+			b += 1;    
+		}
+	}
+	
+	return result
+}
+	
+	
+	
+	
+	
+	
+	Console.WriteLine(a.ToString() + ' ' + b.ToString());
+}
+	
+	
+	
+
+
+		
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//************A Very Big Sum************
