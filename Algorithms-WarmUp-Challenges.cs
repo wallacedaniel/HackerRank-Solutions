@@ -43,16 +43,6 @@ static int simpleArraySum(int n, int[] ar) {
 }
 
 
-
-
-
-
-
-
-
-
-	
-
 // ************Compare the Triplets************
 
 // https://www.hackerrank.com/challenges/compare-the-triplets/problem
@@ -82,82 +72,100 @@ static void Main(String[] args) {
 // int b2 = 10;
 
 // int[] result = solve(a0, a1, a2, b0, b1, b2);
-// ResultLabel.Text = result.ToString();               <-----------
+// ResultLabel.Text = String.Join(" ", result);             
 
 // Sample output:
 // 1 1
 
-
-	
-static int[] solve(int a0, int a1, int a2, int b0, int b1, int b2){
-
-	int[] result = new int[2]; 
+static int[] solve(int a0, int a1, int a2, int b0, int b1, int b2)
+{
+	int[] result = new int[2];
 	int a = 0;
 	int b = 0;
-	
-	for(int i = 0; i < 3; i++){
-		
-		if(tokens_a0[i] > tokens_b0[i]){
-			a += 1;              
-		}
-		else if(tokens_b0[i] > tokens_a0[i]){
-			b += 1;    
-		}
+
+	if (a0 > b0)
+	{
+		a += 1;
 	}
 	
-	return result
+	else if (b0 > a0)
+	{
+		b += 1;
+	}
+
+	if (a1 > b1)
+	{
+		a += 1;
+	}
+
+	else if (b1 > a1)
+	{
+		b += 1;
+	}
+
+	if (a2 > b2)
+	{
+		a += 1;
+	}
+
+	else if (b2 > a2)
+	{
+		b += 1;
+	}
+
+	result[0] = a;
+	result[1] = b;
+
+	return result;
+}	
+	
+	
+
+// ************A Very Big Sum************
+// Sums a given quantity of large values.
+// https://www.hackerrank.com/challenges/a-very-big-sum/problem
+
+// HR starter code
+static void Main(String[] args) {
+	int n = Convert.ToInt32(Console.ReadLine());
+	string[] ar_temp = Console.ReadLine().Split(' ');
+	long[] ar = Array.ConvertAll(ar_temp,Int64.Parse);
+	long result = aVeryBigSum(n, ar);
+	Console.WriteLine(result);
 }
-	
-	
-	
-	
-	
-	
-	Console.WriteLine(a.ToString() + ' ' + b.ToString());
+
+
+static long aVeryBigSum(int n, long[] ar) {
+	// Complete this function
 }
-	
-	
-	
 
 
+
+
+static void Main(String[] args) {
+	int n = Convert.ToInt32(Console.ReadLine());
+	string[] arr_temp = Console.ReadLine().Split(' ');
+	int[] arr = Array.ConvertAll(arr_temp,Int32.Parse);
+	
+	long solution = 0;
+
+	for(int i=0; i<n; i++){
 		
-	
-	
+		solution += Convert.ToInt64(arr[i]);    
+	}
+	Console.WriteLine(solution.ToString());
+}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//************A Very Big Sum************
-	// Sums a given quantity of large values.
 
-	static void Main(String[] args) {
-        int n = Convert.ToInt32(Console.ReadLine());
-        string[] arr_temp = Console.ReadLine().Split(' ');
-        int[] arr = Array.ConvertAll(arr_temp,Int32.Parse);
-		
-		long solution = 0;
 
-        for(int i=0; i<n; i++){
-            
-            solution += Convert.ToInt64(arr[i]);    
-        }
-        Console.WriteLine(solution.ToString());
-    }
+
+
+
+
+
+
+
+
 
     //************Diagonal Difference************
     // Sums diagonal integers in a matrix, then takes the absolute value of their difference.
