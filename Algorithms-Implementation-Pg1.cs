@@ -1,60 +1,82 @@
-//*******Grading Students**********
+
+
+// C# Solutions for HackerRank.com  - Algorithms Track - Implementation Page 1     
+
+
+// ***********Grading Students***********
 // Rounding student grades
+// https://www.hackerrank.com/challenges/grading/problem
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-class Solution {
-
-    static int[] solve(int[] grades) {
-        int[] solution = new int[grades.Length];
-        for (int i = 0; i < grades.Length; i++)
-        {
-            int roundCheck = grades[i];
-            int diffCount = 0;
-            while(roundCheck % 5 != 0)
-            {
-                roundCheck += 1;
-                diffCount += 1;
-            }
-            if(diffCount < 3 && grades[i] >= 38)
-            {
-                grades[i] = roundCheck;
-                solution[i] = grades[i];
-            }
-            else
-            {
-                solution[i] = grades[i];
-            }
-        }
-        return solution;
-    }
-
-    static void Main(String[] args) {
-        int n = Convert.ToInt32(Console.ReadLine());
-        int[] grades = new int[n];
-        for(int grades_i = 0; grades_i < n; grades_i++){
-           grades[grades_i] = Convert.ToInt32(Console.ReadLine());   
-        }
-        int[] result = solve(grades);
-        for (int i = 0; i < result.Length; i++)
-        {
-            Console.WriteLine(result[i].ToString());
-        }
-    }
+// HR starter code
+static void Main(String[] args) {
+	int n = Convert.ToInt32(Console.ReadLine());
+	int[] grades = new int[n];
+	for(int grades_i = 0; grades_i < n; grades_i++){
+	   grades[grades_i] = Convert.ToInt32(Console.ReadLine());   
+	}
+	int[] result = solve(grades);
+	Console.WriteLine(String.Join("\n", result));
 }
 
-//********Apples and Oranges********
-// Detects overlapping values on a number line
+// Sample input to run in Visual Studio: 
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-class Solution {
+// int n = 4;
+// int[] grades = new int[]{73, 67, 38, 33};
 
-    static void Main(String[] args) {
+//for (int i = 0; i < result.Length; i++)
+//{
+//	ResultLabel.Text += result[i].ToString() + <br>;
+//}
+
+// Sample output:
+// 75
+// 67
+// 40
+// 33
+
+static int[] solve(int[] grades) {
+		
+	int[] solution = new int[grades.Length];
+	for (int i = 0; i < grades.Length; i++)
+	{
+		int roundCheck = grades[i];
+		int diffCount = 0;
+		while(roundCheck % 5 != 0)
+		{
+			roundCheck += 1;
+			diffCount += 1;
+		}
+		if(diffCount < 3 && grades[i] >= 38)
+		{
+			grades[i] = roundCheck;
+			solution[i] = grades[i];
+		}
+		else
+		{
+			solution[i] = grades[i];
+		}
+	}
+	return solution;
+}
+
+    
+
+
+	
+
+	
+	
+
+
+
+
+
+// ***********Apples and Oranges************
+// Detects values which overlap on a number line
+// https://www.hackerrank.com/challenges/apple-and-orange/problem
+
+// HR starter code
+static void Main(String[] args) {
 	string[] tokens_s = Console.ReadLine().Split(' ');
 	int s = Convert.ToInt32(tokens_s[0]);
 	int t = Convert.ToInt32(tokens_s[1]);
@@ -68,6 +90,14 @@ class Solution {
 	int[] apple = Array.ConvertAll(apple_temp,Int32.Parse);
 	string[] orange_temp = Console.ReadLine().Split(' ');
 	int[] orange = Array.ConvertAll(orange_temp,Int32.Parse);
+	countApplesAndOranges(s, t, a, b, apple, orange);
+}
+
+
+static void countApplesAndOranges(int s, int t, int a, int b, int[] apples, int[] oranges) {
+	// Complete this function
+}
+
 
 	int appleHit = 0;
 	for (int i = 0; i < apple.Length; i++)
@@ -93,6 +123,34 @@ class Solution {
 	Console.WriteLine(orangeHit.ToString());  
     }
 }
+
+
+
+
+
+
+Sample Input 0
+
+7 11
+5 15
+3 2
+-2 2 1
+5 -6
+Sample Output 0
+
+1 1
+
+
+
+
+
+
+
+
+
+
+
+
 
 //*********Kangaroo***********
 // Determines whether two incrementing values will ever be equal on equal iteration

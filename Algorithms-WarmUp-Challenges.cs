@@ -4,7 +4,6 @@
 
 
 // ***********Simple Array Sum************
-
 // https://www.hackerrank.com/challenges/simple-array-sum/problem
 // Sums an array of a given length.
 
@@ -44,7 +43,6 @@ static int simpleArraySum(int n, int[] ar) {
 
 
 // ************Compare the Triplets************
-
 // https://www.hackerrank.com/challenges/compare-the-triplets/problem
 // Compares values within two arrays.
 	
