@@ -60,17 +60,6 @@ static int[] solve(int[] grades) {
 }
 
     
-
-
-	
-
-	
-	
-
-
-
-
-
 // ***********Apples and Oranges************
 // Detects values which overlap on a number line
 // https://www.hackerrank.com/challenges/apple-and-orange/problem
@@ -93,200 +82,230 @@ static void Main(String[] args) {
 	countApplesAndOranges(s, t, a, b, apple, orange);
 }
 
+// Sample input to run in Visual Studio: 
+
+// int s = 7;
+// int t = 11;
+// int a = 5;
+// int b = 15;
+// int m = 3;
+// int n = 2;
+// int[] apple = new int[]{-2, 2, 1};
+// int[] orange = new int[]{5, -6};
+
+// ResultLabel.Text = appleHit.ToString() + <br>; 
+// ResultLabel.Text += orangeHit.ToString();
+
+// Sample output:
+// 1 
+// 1
 
 static void countApplesAndOranges(int s, int t, int a, int b, int[] apples, int[] oranges) {
-	// Complete this function
-}
-
-
+	
 	int appleHit = 0;
-	for (int i = 0; i < apple.Length; i++)
+	for (int i = 0; i < apples.Length; i++)
 	{
-		if (a + apple[i] >= s && a + apple[i] <= t)
+		if (a + apples[i] >= s && a + apples[i] <= t)
 		{
 			appleHit += 1;
 		}
 	}
 
 	int orangeHit = 0;
-	for (int i = 0; i < orange.Length; i++)
+	for (int i = 0; i < oranges.Length; i++)
 	{
-		if (b + orange[i] >= s && b + orange[i] <= t)
+		if (b + oranges[i] >= s && b + oranges[i] <= t)
 		{
 			orangeHit += 1;
 		}
 	}
-
-	//Label1.Text = appleHit.ToString() + orangeHit.ToString();
-
 	Console.WriteLine(appleHit.ToString());
-	Console.WriteLine(orangeHit.ToString());  
-    }
+    Console.WriteLine(orangeHit.ToString());
 }
 
 
-
-
-
-
-Sample Input 0
-
-7 11
-5 15
-3 2
--2 2 1
-5 -6
-Sample Output 0
-
-1 1
-
-
-
-
-
-
-
-
-
-
-
-
-
-//*********Kangaroo***********
+// **********Kangaroo***********
 // Determines whether two incrementing values will ever be equal on equal iteration
+// https://www.hackerrank.com/challenges/kangaroo/problem
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-class Solution {
-
-    static void Main(String[] args) {
-        string[] tokens_x1 = Console.ReadLine().Split(' ');
-        int x1 = Convert.ToInt32(tokens_x1[0]);
-        int v1 = Convert.ToInt32(tokens_x1[1]);
-        int x2 = Convert.ToInt32(tokens_x1[2]);
-        int v2 = Convert.ToInt32(tokens_x1[3]);
-        
-        int x1Count = 0;
-        int x2Count = 0;
-        int yesCheck= 0;
-        
-        while(x1 < 100000000 && x2 < 100000000){
-            x1 += v1;
-            x2 += v2;
-            x1Count += 1;
-            x2Count += 1;
-            if(x1Count == x2Count && x1 == x2){
-                Console.WriteLine("YES");
-                yesCheck = 1;
-                break;
-            }
-        }
-        if (yesCheck != 1)
-        {
-            Console.WriteLine("NO");
-        } 
-    }
+// HR starter code
+static void Main(String[] args) {
+	string[] tokens_x1 = Console.ReadLine().Split(' ');
+	int x1 = Convert.ToInt32(tokens_x1[0]);
+	int v1 = Convert.ToInt32(tokens_x1[1]);
+	int x2 = Convert.ToInt32(tokens_x1[2]);
+	int v2 = Convert.ToInt32(tokens_x1[3]);
+	string result = kangaroo(x1, v1, x2, v2);
+	Console.WriteLine(result);
 }
 
-//*********Between Two Sets***********
-// Counts instances of common factors from numbers between two number sets which are factorable for all numbers within the sets
+// Sample input to run in Visual Studio: 
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-class Solution {
+// int x1 = 0;
+// int v1 = 3;
+// int x2 = 4;
+// int v2 = 2;
 
-    static void Main(String[] args) {
-        string[] tokens_n = Console.ReadLine().Split(' ');
-        int n = Convert.ToInt32(tokens_n[0]);
-        int m = Convert.ToInt32(tokens_n[1]);
-        string[] a_temp = Console.ReadLine().Split(' ');
-        int[] a = Array.ConvertAll(a_temp,Int32.Parse);
-        string[] b_temp = Console.ReadLine().Split(' ');
-        int[] b = Array.ConvertAll(b_temp,Int32.Parse); 
+// ResultLabel.Text = result.ToString();
 
-        int setCount = 0;
+// Sample output:
+// YES
 
-        for (int i = a.Max(); i <= b.Min(); i++)
-        {
-            bool firstCheck = true;
-            bool secondCheck = false;
-
-            for (int j = 0; j < n; j++)
-            {
-                if (i % a[j] != 0)
-                {
-                    firstCheck = false;
-                }
-            }
-
-            if (firstCheck == true)
-            {
-                for (int k = 0; k < m; k++)
-                {
-                    if (b[k] % i != 0)
-                    {
-                        secondCheck = false;
-                        break;
-                    }
-                    else
-                    {
-                        secondCheck = true;
-                    }
-                }
-            }
-
-            if(secondCheck == true)
-            {
-                setCount += 1;
-            }
-        }
-        Console.Write(setCount.ToString());
-    }
+static string kangaroo(int x1, int v1, int x2, int v2) {
+	int x1Count = 0;
+	int x2Count = 0;
+	int yesCheck= 0;
+	string result = "";
+	
+	while(x1 < 100000000 && x2 < 100000000){
+		x1 += v1;
+		x2 += v2;
+		x1Count += 1;
+		x2Count += 1;
+		if(x1Count == x2Count && x1 == x2){
+			result = "YES";
+			yesCheck = 1;
+			return result;
+		}
+	}
+	if (yesCheck != 1)
+	{
+		result = "NO";
+	} 
+	return result;
 }
 
-//**********Breaking the Records***********
+
+// *********Between Two Sets***********
+// Counts instances of common factors from numbers between two number sets, which are factorable for all numbers within the sets
+// https://www.hackerrank.com/challenges/between-two-sets/problem
+
+// HR starter code
+static void Main(String[] args) {
+	string[] tokens_n = Console.ReadLine().Split(' ');
+	int n = Convert.ToInt32(tokens_n[0]);
+	int m = Convert.ToInt32(tokens_n[1]);
+	string[] a_temp = Console.ReadLine().Split(' ');
+	int[] a = Array.ConvertAll(a_temp,Int32.Parse);
+	string[] b_temp = Console.ReadLine().Split(' ');
+	int[] b = Array.ConvertAll(b_temp,Int32.Parse);
+	
+	int total = getTotalX(a, b);
+	Console.WriteLine(total);
+}
+
+// Sample input to run in Visual Studio: 
+
+// int n = 2;
+// int m = 3;
+// int[] a = new int[]{2, 4};
+// int[] b = new int[]{16, 32, 96};
+
+// ResultLabel.Text = total.ToString();
+
+// Sample output:
+// 3
+
+static int getTotalX(int[] a, int[] b) {
+	
+	int total = 0;
+
+	for (int i = a.Max(); i <= b.Min(); i++)
+	{
+		bool firstCheck = true;
+		bool secondCheck = false;
+
+		for (int j = 0; j < a.Length; j++)
+		{
+			if (i % a[j] != 0)
+			{
+				firstCheck = false;
+			}
+		}
+
+		if (firstCheck == true)
+		{
+			for (int k = 0; k < b.Length; k++)
+			{
+				if (b[k] % i != 0)
+				{
+					secondCheck = false;
+					break;
+				}
+				else
+				{
+					secondCheck = true;
+				}
+			}
+		}
+
+		if(secondCheck == true)
+		{
+			total += 1;
+		}
+	}
+	return total;
+}
+
+
+// **********Breaking the Records***********
 // Determines the instances within an iteration where the value breaks the previous record for lowest/ highest value.
+// https://www.hackerrank.com/challenges/breaking-best-and-worst-records/problem
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-class Solution {
-
-    static int[] getRecord(int[] s){
-        // Complete this function
-        int highChange = 0;
-        int lowChange = 0;
-        int high = s[0];
-        int low = s[0];
-        int[] resultArray = new int[2];
-        for (int i = 0; i < s.Length; i++){
-            if(s[i] > high){
-                high = s[i];
-                highChange += 1;
-            }
-            if(s[i] < low){
-                low = s[i];
-                lowChange += 1;   
-            }
-        }
-        resultArray[0] = highChange;
-        resultArray[1] = lowChange;
-        return resultArray;
-    }
-
-    static void Main(String[] args) {
-        int n = Convert.ToInt32(Console.ReadLine());
-        string[] s_temp = Console.ReadLine().Split(' ');
-        int[] s = Array.ConvertAll(s_temp,Int32.Parse);
-        int[] result = getRecord(s);
-        Console.WriteLine(String.Join(" ", result));
-    }
+// HR starter code
+static void Main(String[] args) {
+	int n = Convert.ToInt32(Console.ReadLine());
+	string[] s_temp = Console.ReadLine().Split(' ');
+	int[] s = Array.ConvertAll(s_temp,Int32.Parse);
+	int[] result = getRecord(s);
+	Console.WriteLine(String.Join(" ", result));
 }
+
+// Sample input to run in Visual Studio: 
+
+// int n = 9;
+// int[] s = new int[]{10, 5, 20, 20, 4, 5, 2, 25, 1};
+
+// ResultLabel.Text = String.Join(" ", result);
+
+// Sample output:
+// 2 4
+
+static int[] getRecord(int[] score){
+	int highChange = 0;
+	int lowChange = 0;
+	int high = score[0];
+	int low = score[0];
+	int[] result = new int[2];
+	for (int i = 0; i < score.Length; i++){
+		if(score[i] > high){
+			high = score[i];
+			highChange += 1;
+		}
+		if(score[i] < low){
+			low = score[i];
+			lowChange += 1;   
+		}
+	}
+	result[0] = highChange;
+	result[1] = lowChange;
+	return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //********Birthday Chocolate**********
 // Counts instances where a given quantity of values from a sequence of values, sum to another given value
