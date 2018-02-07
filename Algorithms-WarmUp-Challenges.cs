@@ -120,7 +120,6 @@ static int[] solve(int a0, int a1, int a2, int b0, int b1, int b2)
 }	
 	
 	
-
 // ************A Very Big Sum************
 // Sums a given quantity of large values.
 // https://www.hackerrank.com/challenges/a-very-big-sum/problem
@@ -134,223 +133,302 @@ static void Main(String[] args) {
 	Console.WriteLine(result);
 }
 
+// Sample input to run in Visual Studio:
+// int n = 5;
+// long[] ar = new long[]{1000000001, 1000000002, 1000000003, 1000000004, 1000000005};
+// ResultLabel.Text = String.Join(" ", result);
+
+// Sample output:
+// 5000000015
 
 static long aVeryBigSum(int n, long[] ar) {
-	// Complete this function
+	
+	long result = 0;
+
+	for(int i = 0; i < n; i++){
+		
+		result += Convert.ToInt64(ar[i]);    
+	}
+	return result;
 }
 
 
+// ************Diagonal Difference************
+// Sums diagonal integers in a matrix, then takes the absolute value of their difference.
+// https://www.hackerrank.com/challenges/diagonal-difference/problem
+
+// HR starter code
+static void Main(String[] args) {
+	int n = Convert.ToInt32(Console.ReadLine());
+	int[][] a = new int[n][];
+	for(int a_i = 0; a_i < n; a_i++){
+	   string[] a_temp = Console.ReadLine().Split(' ');
+	   a[a_i] = Array.ConvertAll(a_temp,Int32.Parse);
+	}
+	int result = diagonalDifference(a);
+	Console.WriteLine(result);
+}
+
+// Sample input to run in Visual Studio:
+// int n = 3;
+// int[][] a = new int[n][];
+
+// int[] a_1 = new int[3]{11,2,4};
+// int[] a_2 = new int[3] { 4, 5, 6 };
+// int[] a_3 = new int[3] { 10, 8, -12 };
+
+// a[0] = a_1;
+// a[1] = a_2;
+// a[2] = a_3;
+	
+// ResultLabel.Text = result.ToString();
+
+// Sample output:
+// 15
+
+static int diagonalDifference(int[][] a) {
+	
+	int primary = 0;
+	
+	for (int i = 0; i < a.Length; i++)
+	{  
+		primary += a[i][i];
+	}
+
+	int secondary = 0;
+	int secondIndex = a.Length - 1;
+
+	for (int i = 0; i < a.Length; i++)
+	{
+		secondary += a[i][secondIndex];
+		secondIndex -= 1;
+	}
+
+	int result = Math.Abs(primary - secondary);
+	return result;
+}
 
 
+// ***********Plus Minus ************
+// Determines percentage of positive, negative, and 0 integers in an array.
+// https://www.hackerrank.com/challenges/plus-minus/problem
+
+// HR starter code
 static void Main(String[] args) {
 	int n = Convert.ToInt32(Console.ReadLine());
 	string[] arr_temp = Console.ReadLine().Split(' ');
 	int[] arr = Array.ConvertAll(arr_temp,Int32.Parse);
-	
-	long solution = 0;
-
-	for(int i=0; i<n; i++){
-		
-		solution += Convert.ToInt64(arr[i]);    
-	}
-	Console.WriteLine(solution.ToString());
+	plusMinus(arr);
 }
 
+// Sample input to run in Visual Studio:
+// int n = 6;
+// int[] arr = new int[]{-4, 3, -9, 0, 4, 1};
+	
+// ResultLabel.Text = posPercent.ToString() + " " + negPercent.ToString() + " " + zerPercent.ToString();
 
+// Sample output:
+// 0.500000
+// 0.333333
+// 0.166667
 
-
-
-
-
-
-
-
-
-
-    //************Diagonal Difference************
-    // Sums diagonal integers in a matrix, then takes the absolute value of their difference.
-
-    static void Main(String[] args) {
-        int n = Convert.ToInt32(Console.ReadLine());
-        int[][] a = new int[n][];
-        for(int a_i = 0; a_i < n; a_i++){
-           string[] a_temp = Console.ReadLine().Split(' ');
-           a[a_i] = Array.ConvertAll(a_temp,Int32.Parse);
-        }
+static void plusMinus(int[] arr) {
+    int zeroCount = 0;
+	int posCount = 0;
+	int negCount = 0;
+	int n = arr.Length;
 		
-		//int n = 3;
-		//int[][] a = new int[n][];
-
-		//int[] a_1 = new int[3]{11,2,4};
-		//int[] a_2 = new int[3] { 4, 5, 6 };
-		//int[] a_3 = new int[3] { 10, 8, -12 };
-
-		//a[0] = a_1;
-		//a[1] = a_2;
-		//a[2] = a_3;
-		
-		int primary = 0;
-		
-        for (int i = 0; i < n; i++)
-        {  
-            primary += a[i][i];
-        }
-
-        int secondary = 0;
-        int secondIndex = n - 1;
-
-        for (int i = 0; i < n; i++)
-        {
-            secondary += a[i][secondIndex];
-            secondIndex -= 1;
-        }
-
-        int solution = Math.Abs(primary - secondary);
-        Console.WriteLine(solution.ToString());
-    }
-
-    //*********Plus Minus ************
-    // Determines percentage of positive, negative, and 0 integers in an array.
-
-    static void Main(String[] args) {
-        int n = Convert.ToInt32(Console.ReadLine());
-        string[] arr_temp = Console.ReadLine().Split(' ');
-        int[] arr = Array.ConvertAll(arr_temp,Int32.Parse);
-        
-		int zeroCount = 0;
-            int posCount = 0;
-            int negCount = 0;
-            
-        for (int i = 0; i < n; i++)
-        {
-            if (arr[i] > 0)
-            {
-                posCount += 1;
-            }
-            else if (arr[i] < 0)
-            {
-                negCount += 1;
-            }
-            else
-            {
-                zeroCount += 1;
-            }
-        }
-
-        decimal posPercent = Convert.ToDecimal(posCount) / Convert.ToDecimal(n);
-        decimal negPercent = Convert.ToDecimal(negCount) / Convert.ToDecimal(n);
-        decimal zeroPercent = Convert.ToDecimal(zeroCount) / Convert.ToDecimal(n);
-
-        Console.WriteLine(posPercent.ToString());
-        Console.WriteLine(negPercent.ToString());
-        Console.WriteLine(zeroPercent.ToString()); 
-    }
-	
-	//*********Staircase************
-    // Given an array, prints an ascending staircase of hashes with length and height of array.
-	
-	static void Main(String[] args) {
-        int n = Convert.ToInt32(Console.ReadLine());
-        
-		string hashString = "";
-        string printSolution = "";
-
-        for (int i = 0; i < n; i++)      
-        {
-            string solution = "";
-            for (int j = 0; j < n; j++)   
-            {
-                hashString += "#";    
-            }
-
-            hashString = hashString.Substring((n - 1) - i, i + 1);
-            int spaceLength = n - hashString.Length;
-            string spaceString = "";
-
-            for (int k = 0; k < spaceLength ; k++)
-            {
-                spaceString += " ";
-            }
-
-            solution = spaceString + hashString;
-            solution += Environment.NewLine;
-            printSolution += solution;
-        }
-        Console.WriteLine(printSolution);
-    }
-	
-	//**********Min and Max Sum************
-	// Determines minimum sum (removes largest) and maximum sum (removes smallest) of values in an array. 
-
-	static void Main(string[] args) {
-        
-        string[] inputArr = Console.ReadLine().Split(' ');
-        long[] arr = Array.ConvertAll(inputArr, long.Parse);
-
-            long minInt = arr.Min();
-            int index = Array.IndexOf(arr, minInt);
-
-            long[] minArr = removeIndex(arr, index);
-            long minSum = minArr.Sum();
-
-            long maxInt = arr.Max();
-            index = Array.IndexOf(arr, maxInt);
-
-            long[] maxArr = removeIndex(arr, index);
-            long maxSum = maxArr.Sum();
-            
-            Console.WriteLine(maxSum.ToString() + " "  + minSum.ToString());  
-    }
-    
-    public static long[] removeIndex(long[] arr, int removeIndex)
-    {
-        long[] newArr = new long[arr.Length - 1];
-        for (int i = 0, j = 0; i < newArr.Length; i++, j++)
-        {
-            if (i == removeIndex)
-            {
-                j++;
-            }
-            newArr[i] = arr[j];
-        }
-        return newArr;
-    }
-	
-	//*********Time Conversion************
-	// Converts to military time (24 hr day)
-
-	static void Main(String[] args) {
-        string time = Console.ReadLine();
-        DateTime formatTime = DateTime.Parse(time);
-        Console.Write(formatTime.ToString("HH:mm:ss"));
-    }
-
-    //***********Birthday Cake Candles************
-    // Counts the occurences of the max value in an array
-
-    static void Main(String[] args) {
-        int n = Convert.ToInt32(Console.ReadLine());
-        string[] height_temp = Console.ReadLine().Split(' ');
-        int[] height = Array.ConvertAll(height_temp,Int32.Parse);
-        
-        int maxHeight = height.Max();
-
-		int maxCount = 0;
-		for (int i = 0; i < n; i++)
-			if(height[i] == maxHeight)
-			{
-				maxCount += 1;    
-			}
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] > 0)
 		{
-
+			posCount += 1;
 		}
-		Console.Write(maxCount.ToString());
-    }
+		else if (arr[i] < 0)
+		{
+			negCount += 1;
+		}
+		else
+		{
+			zeroCount += 1;
+		}
+	}
+
+	decimal posPercent = Convert.ToDecimal(posCount) / Convert.ToDecimal(n);
+	decimal negPercent = Convert.ToDecimal(negCount) / Convert.ToDecimal(n);
+	decimal zeroPercent = Convert.ToDecimal(zeroCount) / Convert.ToDecimal(n);
+
+	Console.WriteLine(posPercent.ToString());
+	Console.WriteLine(negPercent.ToString());
+	Console.WriteLine(zeroPercent.ToString()); 
+}
+
+	
+// ************Staircase************
+// Given an array, prints an ascending staircase of hashes with length and height of array.
+// https://www.hackerrank.com/challenges/staircase/problem
+
+// HR starter code
+static void Main(String[] args) {
+	int n = Convert.ToInt32(Console.ReadLine());
+	staircase(n);
+}
+
+// Sample input to run in Visual Studio:
+// int n = 6;
+	
+// ResultLabel.Text = printSolution.ToString();
+
+// Sample output:
+//      #
+//     ##
+//    ###
+//   ####
+//  #####
+// ######
+
+static void staircase(int n) {
+ 
+	string hashString = "";
+	string printSolution = "";
+
+	for (int i = 0; i < n; i++)      
+	{
+		string solution = "";
+		for (int j = 0; j < n; j++)   
+		{
+			hashString += "#";    
+		}
+
+		hashString = hashString.Substring((n - 1) - i, i + 1);
+		int spaceLength = n - hashString.Length;
+		string spaceString = "";
+
+		for (int k = 0; k < spaceLength ; k++)
+		{
+			spaceString += " ";
+		}
+
+		solution = spaceString + hashString;
+		solution += Environment.NewLine;
+		printSolution += solution;
+	}
+	Console.WriteLine(printSolution);
+}
+
+    
+// ***********Min and Max Sum************
+// Determines minimum sum (removes largest) and maximum sum (removes smallest) of values in an array. 
+// https://www.hackerrank.com/challenges/mini-max-sum/problem
+
+// HR starter code
+static void Main(String[] args) {
+	string[] arr_temp = Console.ReadLine().Split(' ');
+	long[] arr = Array.ConvertAll(arr_temp, long.Parse);
+	miniMaxSum(arr);
+}
+
+// Sample input to run in Visual Studio:
+// long[] arr = new long[] {1, 2, 3, 4, 5};
+	
+// ResultLabel.Text = maxSum.ToString() + " "  + minSum.ToString();
+
+// Sample output:
+// 10 14
+
+static void miniMaxSum(long[] arr) {
+	
+	long minInt = arr.Min();
+	int index = Array.IndexOf(arr, minInt);
+
+	long[] minArr = removeIndex(arr, index);
+	long minSum = minArr.Sum();
+
+	long maxInt = arr.Max();
+	index = Array.IndexOf(arr, maxInt);
+
+	long[] maxArr = removeIndex(arr, index);
+	long maxSum = maxArr.Sum();
+
+	Console.WriteLine(maxSum.ToString() + " "  + minSum.ToString());
+}
+
+static long[] removeIndex(long[] arr, int removeIndex)
+{
+	long[] newArr = new long[arr.Length - 1];
+	for (int i = 0, j = 0; i < newArr.Length; i++, j++)
+	{
+		if (i == removeIndex)
+		{
+			j++;
+		}
+		newArr[i] = arr[j];
+	}
+	return newArr;
 }
 	
 	
+// ***********Birthday Cake Candles************
+// Counts the occurences of the max value in an array
+// https://www.hackerrank.com/challenges/birthday-cake-candles/problem
 
+// HR starter code
+static void Main(String[] args) {
+	int n = Convert.ToInt32(Console.ReadLine());
+	string[] ar_temp = Console.ReadLine().Split(' ');
+	int[] ar = Array.ConvertAll(ar_temp,Int32.Parse);
+	int result = birthdayCakeCandles(n, ar);
+	Console.WriteLine(result);
+}
 
+// Sample input to run in Visual Studio:
+// int n = 4;
+// int[] ar = new int[]{3, 2, 1, 3};
+	
+// ResultLabel.Text = result.ToString();
+
+// Sample output:
+// 2
+
+static int birthdayCakeCandles(int n, int[] ar) {
+	
+	int maxHeight = ar.Max();
+	int maxCount = 0;
+	
+	for (int i = 0; i < n; i++){
+		if(ar[i] == maxHeight)
+		{
+			maxCount += 1;    
+		}
+	}
+	return maxCount;
+}
+	
+	
+// ***********Time Conversion************
+// Converts to military time (24 hr day)
+// https://www.hackerrank.com/challenges/time-conversion/problem
+
+// HR starter code
+static void Main(String[] args) {
+	string s = Console.ReadLine();
+	string result = timeConversion(s);
+	Console.WriteLine(result);
+}
+
+// Sample input to run in Visual Studio:
+// string s = "07:05:45PM";
+	
+// ResultLabel.Text = printSolution.ToString();
+
+// Sample output:
+// 19:05:45
+
+static string timeConversion(string s) {
+	DateTime formatTime = DateTime.Parse(s);
+	string result = formatTime.ToString("HH:mm:ss");
+	return result;
+}
 
 
 
