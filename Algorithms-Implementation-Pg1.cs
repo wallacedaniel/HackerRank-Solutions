@@ -293,71 +293,80 @@ static int[] getRecord(int[] score){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//********Birthday Chocolate**********
+// ***********Birthday Chocolate***********
 // Counts instances where a given quantity of values from a sequence of values, sum to another given value
+// https://www.hackerrank.com/challenges/the-birthday-bar/problem
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-class Solution {
-
-    static int getWays(int[] squares, int d, int m){
-        int result = 0;
-                           
-        if (squares.Length == 1)
-        {
-            if(squares[0] == d)
-            {
-                result += 1;
-            }
-        }
-        else
-        {
-            for (int i = 0; i < (squares.Length - m) + 1; i++)
-            {
-                List<int> temp = new List<int>();
-                int index = i;
-
-                for (int j = 0; j < m; j++)
-                {
-                    temp.Add(squares[index]);
-                    index += 1;
-                }
-                if (temp.Sum() == d)
-                {
-                    result += 1;
-                }
-            }
-        }
-        return result;
-    }
-
-    static void Main(String[] args) {
-        int n = Convert.ToInt32(Console.ReadLine());
-        string[] s_temp = Console.ReadLine().Split(' ');
-        int[] s = Array.ConvertAll(s_temp,Int32.Parse);
-        string[] tokens_d = Console.ReadLine().Split(' ');
-        int d = Convert.ToInt32(tokens_d[0]);
-        int m = Convert.ToInt32(tokens_d[1]);
-        int result = getWays(s, d, m);
-        Console.WriteLine(result);
-    }
+// HR starter code
+static void Main(String[] args) {
+	int n = Convert.ToInt32(Console.ReadLine());
+	string[] s_temp = Console.ReadLine().Split(' ');
+	int[] s = Array.ConvertAll(s_temp,Int32.Parse);
+	string[] tokens_d = Console.ReadLine().Split(' ');
+	int d = Convert.ToInt32(tokens_d[0]);
+	int m = Convert.ToInt32(tokens_d[1]);
+	int result = getWays(s, d, m);
+	Console.WriteLine(result);
 }
+
+// Sample input to run in Visual Studio: 
+
+// int n = 5;
+// int[] s = new int[]{1, 2, 1, 3, 2};
+// int d = 3;
+// int m = 2;
+
+// ResultLabel.Text = String.Join(" ", result);
+
+// Sample output:
+// 2 
+
+
+
+
+static int getWays(int[] squares, int d, int m){
+	
+	int result = 0;
+					   
+	if (squares.Length == 1)
+	{
+		if(squares[0] == d)
+		{
+			result += 1;
+		}
+	}
+	else
+	{
+		for (int i = 0; i < (squares.Length - m) + 1; i++)
+		{
+			List<int> temp = new List<int>();
+			int index = i;
+
+			for (int j = 0; j < m; j++)
+			{
+				temp.Add(squares[index]);
+				index += 1;
+			}
+			if (temp.Sum() == d)
+			{
+				result += 1;
+			}
+		}
+	}
+	return result;
+}
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 //********Divisible Sum Pairs**********
